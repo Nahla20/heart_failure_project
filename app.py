@@ -74,7 +74,14 @@ with col1:
     ChestPainType = st.selectbox("Chest Pain Type", ["ATA", "NAP", "ASY", "TA"])
     RestingBP = st.slider("Resting Blood Pressure", 80, 200, 120)
     Cholesterol = st.slider("Cholesterol", 100, 400, 200)
-    FastingBS = st.selectbox("Fasting Blood Sugar > 120", [0, 1])
+    FastingBS_option = st.selectbox(
+    "Fasting Blood Sugar",
+    ["Normal", "High"],
+    help="Normal: ≤ 120 mg/dL | High: > 120 mg/dL"
+)
+
+# Convert to model input
+    FastingBS = 1 if FastingBS_option == "High" else 0
 
 with col2:
     st.subheader("📊 Medical Details")
